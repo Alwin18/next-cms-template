@@ -1,20 +1,43 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
 
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+  weight: "variable",
+  axes: ["opsz"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "NextCMS — Dashboard",
-  description: "Corporate management dashboard",
+  title: {
+    default: "NextCMS",
+    template: "%s — NextCMS",
+  },
+  description: "Corporate content management dashboard",
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0F1729" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0F1A" },
+  ],
 };
 
 export default function RootLayout({
@@ -26,8 +49,13 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body
+        className="min-h-full flex flex-col bg-background text-foreground"
+      >
+        {children}
+      </body>
     </html>
   );
 }

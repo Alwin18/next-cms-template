@@ -1,13 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
-  LayoutDashboard,
-  Users,
-  ShoppingCart,
-  BarChart3,
   Settings,
   HelpCircle,
   LogOut,
@@ -28,64 +23,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
-
-const navItems = [
-  {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Users",
-    href: "/dashboard/users",
-    icon: Users,
-  },
-  {
-    title: "Products",
-    href: "/dashboard/products",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Analytics",
-    href: "/dashboard/analytics",
-    icon: BarChart3,
-  },
-  {
-    title: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
-  },
-];
-
-function SidebarNav({ collapsed }: { collapsed: boolean }) {
-  const pathname = usePathname();
-
-  return (
-    <nav className="flex flex-col gap-1 px-3">
-      {navItems.map((item) => {
-        const isActive =
-          pathname === item.href ||
-          (item.href !== "/dashboard" && pathname.startsWith(item.href));
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
-              "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-              isActive
-                ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-sm"
-                : "text-sidebar-foreground/70"
-            )}
-          >
-            <item.icon className="h-4.5 w-4.5 shrink-0" />
-            {!collapsed && <span>{item.title}</span>}
-          </Link>
-        );
-      })}
-    </nav>
-  );
-}
+import { SidebarNav } from "./sidebar-nav";
 
 function SidebarFooter({ collapsed }: { collapsed: boolean }) {
   return (
@@ -117,7 +55,7 @@ function SidebarFooter({ collapsed }: { collapsed: boolean }) {
             )}
           </button>
         </DropdownMenuTrigger>
-        {/* <DropdownMenuContent side="top" align="start" className="w-56">
+        <DropdownMenuContent side="top" align="start" className="w-56">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
@@ -133,7 +71,7 @@ function SidebarFooter({ collapsed }: { collapsed: boolean }) {
             <LogOut className="mr-2 h-4 w-4" />
             Logout
           </DropdownMenuItem>
-        </DropdownMenuContent> */}
+        </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
@@ -151,33 +89,32 @@ export function Sidebar() {
     >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-5">
-        {!collapsed && (
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
-              N
-            </div>
-            <span className="text-lg font-bold tracking-tight text-sidebar-foreground">
-              NextCMS
-            </span>
-          </Link>
-        )}
-        {collapsed && (
+        {collapsed ? (
           <Link
             href="/dashboard"
             className="flex h-8 w-8 mx-auto items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm"
           >
             N
           </Link>
-        )}
-        {!collapsed && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 text-sidebar-foreground/50 hover:text-sidebar-foreground"
-            onClick={() => setCollapsed(true)}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
+        ) : (
+          <>
+            <Link href="/dashboard" className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
+                N
+              </div>
+              <span className="text-lg font-bold tracking-tight text-sidebar-foreground">
+                NextCMS
+              </span>
+            </Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7 text-sidebar-foreground/50 hover:text-sidebar-foreground"
+              onClick={() => setCollapsed(true)}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+          </>
         )}
       </div>
 
