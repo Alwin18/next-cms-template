@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { QueryProvider } from "@/components/query-provider";
 
 
 const inter = Inter({
@@ -51,10 +52,8 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body
-        className="min-h-full flex flex-col bg-background text-foreground"
-      >
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

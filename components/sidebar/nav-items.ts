@@ -21,22 +21,22 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Users",
-    href: "/dashboard/users",
+    href: "/users",
     icon: Users,
   },
   {
     title: "Products",
-    href: "/dashboard/products",
+    href: "/products",
     icon: ShoppingCart,
   },
   {
     title: "Analytics",
-    href: "/dashboard/analytics",
+    href: "/analytics",
     icon: BarChart3,
   },
   {
     title: "Settings",
-    href: "/dashboard/settings",
+    href: "/settings",
     icon: Settings,
   },
 ];
