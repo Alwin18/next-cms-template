@@ -23,20 +23,20 @@ export const navItems: NavItem[] = [
     title: "Users",
     href: "/users",
     icon: Users,
-  },
-  {
-    title: "Products",
-    href: "/products",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Analytics",
-    href: "/analytics",
-    icon: BarChart3,
-  },
-  {
-    title: "Settings",
-    href: "/settings",
-    icon: Settings,
-  },
+  }
+  // {
+  //   title: "Products",
+  //   href: "/products",
+  //   icon: ShoppingCart,
+  // },
+  // {
+  //   title: "Analytics",
+  //   href: "/analytics",
+  //   icon: BarChart3,
+  // },
+  // {
+  //   title: "Settings",
+  //   href: "/settings",
+  //   icon: Settings,
+  // },
 ];

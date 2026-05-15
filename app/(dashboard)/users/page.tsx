@@ -7,6 +7,7 @@ import { useUsers, useDeleteUser, User } from "@/hooks/use-users";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Trash2 } from "lucide-react";
+import { LoadingOverlay } from "@/components/loading-overlay";
 
 const columns: ColumnDef<User>[] = [
   {
@@ -80,22 +81,25 @@ export default function UsersPage() {
   });
 
   return (
-    <div className="flex flex-col gap-6 p-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Users</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Manage CMS users and their roles.
-        </p>
-      </div>
+    <>
+      <LoadingOverlay isLoading={isLoading} />
+      <div className="flex flex-col gap-6 p-6">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Users</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Manage CMS users and their roles.
+          </p>
+        </div>
 
-      <DataTable
-        columns={columns}
-        data={data?.data ?? []}
-        rowCount={data?.total}
-        pagination={pagination}
-        onPaginationChange={setPagination}
-        isLoading={isLoading}
-      />
-    </div>
+        <DataTable
+          columns={columns}
+          data={data?.data ?? []}
+          rowCount={data?.total}
+          pagination={pagination}
+          onPaginationChange={setPagination}
+          isLoading={isLoading}
+        />
+      </div>
+    </>
   );
 }
