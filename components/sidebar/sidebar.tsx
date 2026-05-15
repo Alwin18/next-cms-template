@@ -24,6 +24,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import { SidebarNav } from "./sidebar-nav";
+import { AppBreadcrumb } from "@/components/app-breadcrumb";
 
 function SidebarFooter({ collapsed }: { collapsed: boolean }) {
   return (
@@ -180,7 +181,9 @@ export function DashboardHeader() {
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
       <MobileSidebar />
-      <div className="flex-1" />
+      <div className="flex-1 px-4">
+        <AppBreadcrumb />
+      </div>
       <Button variant="ghost" size="icon" className="relative">
         <Bell className="h-4.5 w-4.5" />
         <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-medium text-white">
